@@ -12,20 +12,21 @@ function returnStudents()
     return JSON.parse(students);
 }
 
+function displayStudents(input) {
+    var tableList = "";
+    for(i = 0; i < input.length; i++) {
+        var id = input[i].id;
+        var email = input[i].email;
+        tableList += "<tr><td>" + id + "</td><td>" + email + "</td>";
+
+        document.getElementById("student-list").innerHTML = tableList;
+    }
+}
+
 function populateTable()
 {
     var data = returnStudents();
     displayStudents(data.students);
 }
 
-function displayStudents(input) {
-    var tableList = "";
-    for(i = 0; i < input.length; i++) {
-        var name = input[i].id;
-        var price = input[i].email;
-        tableList += "<tr><td>" + id + "</td><td>" + email + "</td>";
-
-        document.getElementById("product-list").innerHTML = tableList;
-    }
-}
 
