@@ -1,7 +1,7 @@
 <html>
 <head>
-
   <link rel="stylesheet" href="styles.css">
+  <script src="js/instructor.js"></script>
 </head>
 
     <div class="topnav">
@@ -23,38 +23,8 @@
     <br>
     <h2 align="center">Instructor Table</h2>
 
-    <table>
-      <tr>
-        <th>First Name</th>
-        <th>Middle Initial</th>
-        <th>Last Name</th>
-      </tr>
-      <tr>
-        <td>Kajetan</td>
-        <td>A.</td>
-        <td>Savage</td>
-      </tr>
-      <tr>
-        <td>Evelina</td>
-        <td>T.</td>
-        <td>Almond</td>
-      </tr>
-      <tr>
-        <td>Orlaith</td>
-        <td>L.</td>
-        <td>Wilde</td>
-      </tr>
-      <tr>
-        <td>Alfie</td>
-        <td>Q.</td>
-        <td>Santiago</td>
-      </tr>
-      <tr>
-        <td>Gail Stark</td>
-        <td>U.</td>
-        <td>Stark</td>
-      </tr>
-    </table>
-
+    <table id="instructor-list"></table>
+    
+    <script>populateTable()</script>
 </body>
 </html>
