@@ -1,22 +1,38 @@
 <html>
 <head>
   <link rel="stylesheet" href="styles.css">
+  <script src="js/login.js"></script>
 <title>Login Page</title>
 </head>
+
+<div class="topnav">
+      
+  <div class="links">
+
+    <a href="Home Page.html">Home</a>
+
+  </div>
+</div>
+
+<br>
+<br>
+<br>
+<br>
 
 <body>
     
     <form action="Home Page.html">
         User Name:<br>
-        <input type="text" name="Login">
+        <input id='name' type="text" name="Login">
+        <span id='name-error' style='visibility:hidden'>Please enter name.</span>
         <br>
         Password:<br>
-        <input type="password" name="password">
+        <input id='password' type="password" name="password">
+        <span id='password-error' style='visibility:hidden'>Please enter password.</span>
         <br><br>
-        <input type="submit" value="Submit">
-      </form> 
+        <input type="button" value="Submit" onclick="validate()"/>
 
-      <p>Log in to go back to home page.</p>
+      </form> 
 
 </body>
 </html>
