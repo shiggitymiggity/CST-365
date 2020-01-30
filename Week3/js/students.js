@@ -23,7 +23,7 @@ function displayStudents(input) {
         }
         else
         {
-        tableList += "<tr><td>" + id + "</td><td>" + email + "</td>";
+            tableList += "<tr><td>" + id + "</td><td>" + email + "</td>";
         }
 
         document.getElementById("student-list").innerHTML = tableList;
@@ -35,5 +35,3 @@ function populateTable()
     var data = returnStudents();
     displayStudents(data.students);
 }
-
-
