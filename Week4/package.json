@@ -14,6 +14,7 @@
     "gulp-csso": "^4.0.1",
     "gulp-inject": "^5.0.5",
     "gulp-remove-code": "^3.0.4",
+    "gulp-sourcemaps": "^2.6.5",
     "gulp-uglify": "^3.0.2",
     "gulp-watch": "^5.0.1"
   }
