@@ -1,8 +1,8 @@
 <template>
     <div class="links">
         <span v-on:click='goToHome'>Home</span>
-        <span v-on:click='goToTables'>Table Example</span>
-        <span v-on:click='goToForms'>Form Example</span>
+        <span v-on:click='goToTables'>Students</span>
+        <span v-on:click='goToForms'>Instructors</span>
     </div>
 </template>
 
