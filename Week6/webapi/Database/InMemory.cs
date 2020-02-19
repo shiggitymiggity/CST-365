@@ -31,5 +31,38 @@ namespace Database
                 EmailAddress = "Lastone@gmail.com"
             }
         };
+
+            public static List<Instructor> Instructors = new List<Instructor> {
+            new Instructor {
+                Id = 1,
+                First = "Kajetan",
+                Middle = "A.",
+                Last = "Savage"
+            },
+            new Instructor {
+                Id = 2,
+                First = "Evelina",
+                Middle = "T.",
+                Last = "Almond"
+            },
+            new Instructor {
+                Id = 3,
+                First = "Orlaith",
+                Middle = "L.",
+                Last = "Wilde"
+            },
+            new Instructor {
+                Id = 4,
+                First = "Alfie",
+                Middle = "Q.",
+                Last = "Santiago"
+            },
+            new Instructor {
+                Id = 5,
+                First = "Gail",
+                Middle = "U.",
+                Last = "Stark"
+            }
+        };
     }
 }

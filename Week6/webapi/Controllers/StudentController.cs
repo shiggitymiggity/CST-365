@@ -5,7 +5,7 @@ using Database;
 
 namespace webapi.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     [ApiController]
     public class StudentController : ControllerBase
     {
