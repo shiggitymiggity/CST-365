@@ -12,5 +12,5 @@ public class Student
     public int StudentId {get; set;}
 
     [Column("Email Address")]
-    public decimal EmailAddress {get; set;}
+    public string EmailAddress {get; set;}
 }

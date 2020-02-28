@@ -23,6 +23,6 @@ public class Manufacturer
     
     [Column("Student_id")]
     public long Id {get; set;}
-    //public long StudentId { get; set; }
+    public long StudentId { get; set; }
     public Student Student { get; set; }
 }
