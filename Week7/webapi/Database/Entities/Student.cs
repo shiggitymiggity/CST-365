@@ -8,7 +8,7 @@ public class Student
     //[Key]
     //public int Id {get; set;}
 
-    [Column("studentId")]
+    [Column("student_id")]
     [Key]
     public int studentId {get; set;}
 
