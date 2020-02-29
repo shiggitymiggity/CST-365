@@ -4,13 +4,17 @@ using System.ComponentModel.DataAnnotations;
 [Table("student")]
 public class Student
 {
-    [Column("id")]
+    //[Column("studentId")]
+    //[Key]
+    //public int Id {get; set;}
+
+    [Column("studentId")]
     [Key]
-    public long Id {get; set;}
+    public int studentId {get; set;}
 
-    [Column("Student Id")]
-    public int StudentId {get; set;}
+    //[Column("student_id")]
+    //public int Student_Id {get; set;}
 
-    [Column("Email Address")]
-    public string EmailAddress {get; set;}
+    [Column("email_address")]
+    public string Email_Address {get; set;}
 }

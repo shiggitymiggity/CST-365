@@ -24,10 +24,11 @@ namespace webapi.Controllers
         }
 
         [HttpGet("{studentId}")]
-        public ActionResult<Student> GetStudent(int studentId)
+        public ActionResult<Student> GetStudent(int student_Id)
         {
             var student = _dbContext.Student
-                .SingleOrDefault(p => p.StudentId == studentId);
+                //.SingleOrDefault(p => p.Student_Id == student_Id);
+                .SingleOrDefault(p => p.studentId == student_Id);
 
             if (student != null) {
                 return student;
@@ -46,9 +47,10 @@ namespace webapi.Controllers
         }
 
         [HttpDelete("{studentId}")]
-        public ActionResult DeleteStudent(int studentId)
+        public ActionResult DeleteStudent(int student_Id)
         {
-            var student = new Student { StudentId = studentId };
+            //var student = new Student { Student_Id = student_Id };
+            var student = new Student { studentId = student_Id };
 
             _dbContext.Student.Attach(student);
             _dbContext.Student.Remove(student);
@@ -58,16 +60,18 @@ namespace webapi.Controllers
         }
 
         [HttpPut("{studentId}")]
-        public ActionResult UpdateStudent(int studentId, Student studentUpdate)
+        public ActionResult UpdateStudent(int student_Id, Student studentUpdate)
         {
             var student = _dbContext.Student
-                .SingleOrDefault(p => p.StudentId == studentId);
+                //.SingleOrDefault(p => p.Student_Id == student_Id);
+                .SingleOrDefault(p => p.studentId == student_Id);
 
             if (student != null)
             {
-                student.Id = studentUpdate.Id;
-                student.StudentId = studentUpdate.StudentId;
-                student.EmailAddress = studentUpdate.EmailAddress;
+                //student.Id = studentUpdate.Id;
+                //student.Student_Id = studentUpdate.Student_Id;
+                student.studentId = studentUpdate.studentId;
+                student.Email_Address = studentUpdate.Email_Address;
 
                 _dbContext.Update(student);
 

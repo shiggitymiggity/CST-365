@@ -1,4 +1,4 @@
-
+/*
 using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 
@@ -22,7 +22,7 @@ public class Manufacturer
     public string ZipCode {get; set;}
     
     [Column("Student_id")]
-    public long Id {get; set;}
-    public long StudentId { get; set; }
+    public int Id {get; set;}
+    public int StudentId { get; set; }
     public Student Student { get; set; }
-}
+}*/
