@@ -14,9 +14,9 @@
                         <td>{{ student.studentId }}</td>
                         <td>${{ student.Email_Address }}</td>
                         <td>
-                            <button v-on:click='displayProductDetails(student.studentId)'>Details</button>
-                            <button v-on:click='displayUpdateProduct(student.studentId)'>Update</button>
-                            <button v-on:click='deleteProduct(student.studentId)'>Delete</button>
+                            <button v-on:click='displayStudentDetails(student.studentId)'>Details</button>
+                            <button v-on:click='displayUpdateStudent(student.studentId)'>Update</button>
+                            <button v-on:click='deleteStudent(student.studentId)'>Delete</button>
                         </td>
                     </tr>
                 </tbody>
@@ -42,7 +42,7 @@
         </div>
 
         <div v-if='operation == "detail"'>
-            <h2 class='section-heading'>Students Detail</h2>
+            <h2 class='section-heading'>Student Detail</h2>
 
             <div class='form-entry'>
                 Student: {{ Email_Address }}
@@ -54,7 +54,7 @@
         </div>
 
         <div v-if='operation == "update"'>
-            <h2 class='section-heading'>Update Students</h2>
+            <h2 class='section-heading'>Update Student</h2>
         
             <form>
                 <div class='form-entry'>
@@ -62,7 +62,7 @@
                 </div>
 
                 <div class='form-entry'>
-                    <button v-on:click='updateProduct'>Update Students</button>
+                    <button v-on:click='updateStudent'>Update Student</button>
                     <button v-on:click='cancel'>Cancel</button>
                 </div>
             </form>
@@ -77,7 +77,7 @@
         
         data () {
             return {
-                products: [],
+                students: [],
                 operation: 'list',
                 name: undefined,
                 price: undefined,
@@ -87,45 +87,43 @@
             }
         },
         methods: {
-            getProducts: function() {
-                let url = `http://${this.apiServer}/api/product`;
+            getStudents: function() {
+                let url = `http://${this.apiServer}/api/student`;
                 Vue.axios.get(url).then(
                     (response) => {
-                        this.products = response.data;
+                        this.students = response.data;
                     },
                     (error) => {
                         console.log(error)
                     }
                 );
             },
-            getProduct: function(productId) {
-                let url = `http://${this.apiServer}/api/product/${productId}`;
+            getStudent: function(studentId) {
+                let url = `http://${this.apiServer}/api/student/${studentId}`;
                 Vue.axios.get(url).then(
                     (response) => {
-                        this.name = response.data.name;
-                        this.price = response.data.price;
-                        this.count = response.data.count;
+                        this.studentId = response.data.studentId;
+                        this.Email_Address = response.data.Email_Address;
                     },
                     (error) => {
                         console.log(error)
                     }
                 );
             },
-            displayAddProduct: function() {
-                this.name = undefined;
-                this.price = undefined;
-                this.count = undefined;
+            displayAddStudent: function() {
+                this.studentId = undefined;
+                this.Email_Address = undefined;
                 this.operation = 'add';
             },
-            addProduct: function() {
-                let url = `http://${this.apiServer}/api/product`;
+            addStudent: function() {
+                let url = `http://${this.apiServer}/api/student`;
                 Vue.axios.post(url, {
-                    name: this.name,
-                    price: parseFloat(this.price),
+                    studentId: this.studentId,
+                    Email_Address: parseFloat(this.Email_Address),
                     count: parseInt(this.count)
                 }).then(
                     () => {
-                        this.getProducts();
+                        this.getStudents();
                         this.operation = 'list';
                     },
                     (error) => {
@@ -133,24 +131,24 @@
                     }
                 );
             },
-            displayProductDetails: function(productId) {
-                this.getProduct(productId);
+            displayStudentDetails: function(studentId) {
+                this.getStudent(studentId);
                 this.operation = 'detail';
             },
-            displayUpdateProduct: function(productId) {
-                this.productUpdateId = productId;
-                this.getProduct(productId);
+            displayUpdateStudent: function(studentId) {
+                this.studentUpdateId = studentId;
+                this.getStudent(studentId);
                 this.operation = 'update';
             },
-            updateProduct: function() {
-                let url = `http://${this.apiServer}/api/product/${this.productUpdateId}`;
+            updateStudent: function() {
+                let url = `http://${this.apiServer}/api/student/${this.studentUpdateId}`;
                 Vue.axios.put(url, {
-                    name: this.name,
-                    price: parseFloat(this.price),
+                    studentId: this.studentId,
+                    Email_Address: parseFloat(this.Email_Address),
                     count: parseInt(this.count)
                 }).then(
                     () => {
-                        this.getProducts();
+                        this.getStudent();
                         this.operation = 'list';
                     },
                     (error) => {
@@ -158,11 +156,11 @@
                     }
                 );
             },
-            deleteProduct: function(productId) {
-                let url = `http://${this.apiServer}/api/product/${productId}`;
+            deleteStudent: function(studentId) {
+                let url = `http://${this.apiServer}/api/student/${studentId}`;
                 Vue.axios.delete(url).then(
                     () => {
-                        this.getProducts();
+                        this.getStuents();
                         this.operation = 'list';
                     },
                     (error) => {
@@ -175,7 +173,7 @@
             }
         },
         mounted() {
-            this.getProducts();
+            this.getStudents();
             this.operation = 'list';
         }
     }
