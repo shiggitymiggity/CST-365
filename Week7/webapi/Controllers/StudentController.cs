@@ -27,7 +27,6 @@ namespace webapi.Controllers
         public ActionResult<Student> GetStudent(int student_Id)
         {
             var student = _dbContext.Student
-                //.SingleOrDefault(p => p.Student_Id == student_Id);
                 .SingleOrDefault(p => p.studentId == student_Id);
 
             if (student != null) {
@@ -49,7 +48,6 @@ namespace webapi.Controllers
         [HttpDelete("{studentId}")]
         public ActionResult DeleteStudent(int student_Id)
         {
-            //var student = new Student { Student_Id = student_Id };
             var student = new Student { studentId = student_Id };
 
             _dbContext.Student.Attach(student);
@@ -63,13 +61,10 @@ namespace webapi.Controllers
         public ActionResult UpdateStudent(int student_Id, Student studentUpdate)
         {
             var student = _dbContext.Student
-                //.SingleOrDefault(p => p.Student_Id == student_Id);
                 .SingleOrDefault(p => p.studentId == student_Id);
 
             if (student != null)
             {
-                //student.Id = studentUpdate.Id;
-                //student.Student_Id = studentUpdate.Student_Id;
                 student.studentId = studentUpdate.studentId;
                 student.Email_Address = studentUpdate.Email_Address;
 

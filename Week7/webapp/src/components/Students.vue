@@ -12,7 +12,7 @@
                 <tbody>
                     <tr v-for="student in students" :key="student.studentId">
                         <td>{{ student.studentId }}</td>
-                        <td>${{ student.Email_Address }}</td>
+                        <td>{{ student.email_Address }}</td>
                         <td>
                             <button v-on:click='displayStudentDetails(student.studentId)'>Details</button>
                             <button v-on:click='displayUpdateStudent(student.studentId)'>Update</button>
@@ -22,7 +22,6 @@
                 </tbody>
             </table>
 
-            <button id='addBtn' v-on:click='displayAddStudent()'>Add Student</button>
         </div>
 
         <div v-if='operation == "add"'>
@@ -73,16 +72,16 @@
 <script>
     import Vue from 'vue';
     export default {
-        name: 'Products',
+        name: 'Students',
         
         data () {
             return {
                 students: [],
                 operation: 'list',
-                name: undefined,
-                price: undefined,
+                studentId: undefined,
+                Email_Address: undefined,
                 count: undefined,
-                productUpdateId: undefined,
+                studentUpdateId: undefined,
                 apiServer: process.env.VUE_APP_API_SERVER
             }
         },
