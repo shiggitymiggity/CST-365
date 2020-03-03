@@ -1,22 +1,26 @@
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.Extensions.Logging;
+//using Microsoft.Extensions.Logging;
 using Database;
 using System;
 
 public class StudentRepository : IStudentRepository
 {
     private readonly SchoolContext _dbContext;
-    private readonly ILogger _logger;
+    //private readonly ILogger _logger;
 
-    public StudentRepository(SchoolContext dbContext, ILoggerFactory loggerFactory)
+    public StudentRepository(SchoolContext dbContext/*, ILoggerFactory loggerFactory*/)
     {
         _dbContext = dbContext;
-        _logger = loggerFactory.CreateLogger("Controllers.StudentRepository");
+        //_logger = loggerFactory.CreateLogger("Controllers.StudentRepository");
     }
 
     public List<Student> GetAllStudents()
     {
+
+        return _dbContext.Student.ToList();
+
+        /*
         try
         {
             return _dbContext.Student.ToList();
@@ -27,6 +31,7 @@ public class StudentRepository : IStudentRepository
             
             return new List<Student>();
         }
+        */
     }
 
     public Student GetStudentById(int studentId)
