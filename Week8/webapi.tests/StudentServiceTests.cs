@@ -9,59 +9,47 @@ public class StudentServiceTests
 {
     private StudentService _studentService; // System Under Test (SUT)
     private IStudentRepository _studentRepository; // Mock
+    private const string special = "b";
 
     [SetUp]
     public void Setup()
     {
-        //var loggerFactory = A.Fake<LoggerFactory>();
         _studentRepository = A.Fake<IStudentRepository>();
 
         _studentService = new StudentService(_studentRepository);
     }
 
     [Test]
-    public void ShouldNotReturnSpecialStudents()
+    public void SpecialStudents()
     {
         // Arrange (Given)
-        A.CallTo(() => _studentRepository.GetAllStudents()).Returns();
+        A.CallTo(() => _studentRepository.GetAllStudents());
 
         // Act (When)
         var studentViewModels = _studentService.GetAllStudents();
 
         // Assert (NUnit Assertions) (Then)
-        //Assert.That(studentViewModels.Any(pdto => pdto.special), Is.EqualTo(false));
+        Assert.That(studentViewModels.Any(pdto => pdto.Special), Is.EqualTo(true));
 
         // Assert (FluentAssertions) (Then)
-        studentViewModels.Any(pdto => pdto..special).Should().BeFalse();
+        studentViewModels.Any(pdto => pdto.Special).Should().BeTrue();
     }
 
-   /* [Test]
-    public void ShouldReturnSpecialStudents()
+    [Test]
+    public void NotSpecialStudents()
     {
-        // Arrange
-        var expectedStudentName = special + "test";
+        // Arrange (Given)
+        A.CallTo(() => _studentRepository.GetAllStudents());
 
-        A.CallTo(() => _studentRepository.GetAllStudents()).Returns(
-            new List<Student> {
-                new Student {
-                    studentId = 109,
-                    email_Address = "john.smith@oit.edu",
-                    special = true
-                },
-                new Student {
-                    studentId = 108,
-                    email_Address = "mary.jones@oit.edu",
-                    special = true
-                }
-            
-            }
-        );
-
-        // Act
+        // Act (When)
         var studentViewModels = _studentService.GetAllStudents();
 
-        // Assert (FluentAssertions)
-        studentViewModels.Count(pdto => pdto.special).Should().Be(1);
-        studentViewModels.Single(pdto => pdto.special).Name.Should().Be(expectedStudentName);
-    }  */
+        // Assert (NUnit Assertions) (Then)
+        Assert.That(studentViewModels.Any(pdto => pdto.Special), Is.EqualTo(false));
+
+        // Assert (FluentAssertions) (Then)
+        studentViewModels.Any(pdto => pdto.Special).Should().BeFalse();
+    }
+
+
 }
