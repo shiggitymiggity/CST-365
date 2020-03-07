@@ -1,7 +1,7 @@
+  
 using System.Collections.Generic;
-using System.Linq;
 using Microsoft.AspNetCore.Mvc;
-using Database;
+using Microsoft.Extensions.Logging;
 
 namespace webapi.Controllers
 {
@@ -9,28 +9,30 @@ namespace webapi.Controllers
     [ApiController]
     public class StudentController : ControllerBase
     {
-        private readonly SchoolContext _dbContext;
+        private readonly IStudentService _studentService;
+        //private readonly ILogger _logger;
 
-        public StudentController(SchoolContext dbContext)
+        public StudentController(IStudentService studentService, ILoggerFactory loggerFactory)
         {
-            _dbContext = dbContext;
+            _studentService = studentService;
+            //_logger = loggerFactory.CreateLogger("Controllers.StudentController");
         }
 
         [HttpGet]
         public ActionResult<List<Student>> GetAllStudents()
         {
-            var result = _dbContext.Student.ToList();
-            return Ok(result);
+            //_logger.LogDebug("Getting all students");
+
+            return Ok(_studentService.GetAllStudents());
         }
 
         [HttpGet("{studentId}")]
-        public ActionResult<Student> GetStudent(int student_Id)
+        public ActionResult<Student> GetStudent(int studentId)
         {
-            var student = _dbContext.Student
-                .SingleOrDefault(p => p.studentId == student_Id);
+            var student = _studentService.GetStudentById(studentId);
 
             if (student != null) {
-                return student;
+                return Ok(student);
             } else {
                 return NotFound();
             }
@@ -39,41 +41,26 @@ namespace webapi.Controllers
         [HttpPost]
         public ActionResult<Student> AddStudent(Student student)
         {
-            _dbContext.Student.Add(student);
-            _dbContext.SaveChanges();
+            _studentService.AddStudent(student);
 
-            return StatusCode(Microsoft.AspNetCore.Http.StatusCodes.Status201Created);
-        }
-
-        [HttpDelete("{studentId}")]
-        public ActionResult DeleteStudent(int student_Id)
-        {
-            var student = new Student { studentId = student_Id };
-
-            _dbContext.Student.Attach(student);
-            _dbContext.Student.Remove(student);
-            _dbContext.SaveChanges();
-
-            return Ok();
+            return CreatedAtAction(nameof(GetStudent), new { id = student.studentId }, student);
         }
 
         [HttpPut("{studentId}")]
-        public ActionResult UpdateStudent(int student_Id, Student studentUpdate)
+        public ActionResult UpdateStudent(int studentId, Student studentUpdate)
         {
-            var student = _dbContext.Student
-                .SingleOrDefault(p => p.studentId == student_Id);
-
-            if (student != null)
-            {
-                student.studentId = studentUpdate.studentId;
-                student.Email_Address = studentUpdate.Email_Address;
-
-                _dbContext.Update(student);
-
-                _dbContext.SaveChanges();
-            }
+            studentUpdate.studentId = studentId;
+            _studentService.UpdateStudent(studentUpdate);
 
             return NoContent();
+        }
+
+        [HttpDelete("{studentId}")]
+        public ActionResult DeleteStudent(int studentId)
+        {
+            _studentService.DeleteStudent(studentId);
+
+            return Ok();
         }
     }
 }
