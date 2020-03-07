@@ -4,12 +4,10 @@ using Microsoft.Extensions.Logging;
 public class StudentService : IStudentService
 {
     private readonly IStudentRepository _studentRespository;
-    //private readonly ILogger _logger;
 
-    public StudentService(IStudentRepository studentRepository/*, ILoggerFactory loggerFactory*/)
+    public StudentService(IStudentRepository studentRepository)
     {
         _studentRespository = studentRepository;
-        //_logger = loggerFactory.CreateLogger("Controllers.ProductService");
     }
 
     public List<StudentViewModel> GetAllStudents()
@@ -23,11 +21,6 @@ public class StudentService : IStudentService
                 Email_Address = student.Email_Address,
                 Special = BusinessRules.isSpecial(student)
             });
-
-            /*if (BusinessRules.isLowInventory(product))
-            {
-                _logger.LogInformation("Found low inventory product: " + product.ProductId);
-            }*/
         }
 
         return studentViewModels;
