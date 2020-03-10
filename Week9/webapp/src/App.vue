@@ -1,11 +1,16 @@
 <template>
   <div id="app">
+
+     <!-- NEW - add a route to the profile page -->
+      <router-link v-if="$auth.isAuthenticated" to="/profile">Profile</router-link>
+      
     <NavBar/>
     <router-view/>
   </div>
 </template>
 
 <script>
+// instead of import Profile from "../views/Profile.vue";
 import NavBar from './components/NavBar.vue'
 
 export default {
