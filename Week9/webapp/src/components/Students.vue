@@ -88,7 +88,13 @@
         methods: {
             getStudents: function() {
                 let url = `http://${this.apiServer}/api/student`;
-                Vue.axios.get(url).then(
+                const jwtToken  = this.$auth.getTokenSilently();
+
+                 Vue.axios.get(url, {
+                    headers: {
+                        Authorization: `Bearer ${jwtToken}`
+                    }
+                }).then(
                     (response) => {
                         this.students = response.data;
                     },
