@@ -1,4 +1,4 @@
-import { getInstance } from "./student";
+import { getInstance } from "./index";
 
 export const authGuard = (to, from, next) => {
   const authService = getInstance();

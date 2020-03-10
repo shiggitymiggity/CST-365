@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Authorization;
 
 namespace webapi.Controllers
 {
@@ -17,6 +18,7 @@ namespace webapi.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public ActionResult<List<Student>> GetAllStudents()
         {
 

@@ -1,4 +1,5 @@
 {
     "domain": "dev-waz9sp4k.auth0.com",
-    "clientId": "jOHP1vrcziUIBwMbeWomZpOkArdM5f4r"
+    "clientId": "jOHP1vrcziUIBwMbeWomZpOkArdM5f4r",
+    "audience": "https://glossary.com"
   }
